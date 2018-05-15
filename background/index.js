@@ -9,14 +9,20 @@ const logger = createLogger({
     collapsed: true
 });
 
+const aliases = {
+    'user-clicked-alias': () => {
+        console.log('alias clicked')
+    }
+}
+
 const middleware = [thunk, logger];
 
 const store = compose(
-    applyMiddleware(...middleware)
+    applyMiddleware(...middleware, alias(aliases))
 )(createStore)(rootReducer);
 
 wrapStore(store, {
-    portName: 'example'
+    portName: 'myApplication'
 });
 
 chrome.tabs.onActivated.addListener(function(tabId, changeInfo, tab) {

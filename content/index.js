@@ -5,12 +5,15 @@ import { Store } from 'react-chrome-redux';
 
 import App from './components/App';
 
-const proxyStore = new Store({ portName: 'example' });
-
 const anchor = document.createElement('div');
 anchor.id = 'rcr-anchor';
 
 document.body.insertBefore(anchor, document.body.childNodes[0]);
+
+const proxyStore = new Store({ 
+    state: {},
+    portName: 'myApplication' 
+});
 
 render(
     <Provider store={proxyStore}>

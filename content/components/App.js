@@ -8,7 +8,6 @@ class App extends Component {
 
     componentDidMount() {
         document.addEventListener('click', () => {
-            console.log('testing')
             this.props.dispatch({
                 type: 'ADD_COUNT'
             });
@@ -16,12 +15,15 @@ class App extends Component {
     }
 
     render() {
-        return null;
+        <div>
+            Count: {this.props.count}
+        </div>
     }
 }
 
 const mapStateToProps = (state) => {
     return {
+        count: state.count
     };
 };
 

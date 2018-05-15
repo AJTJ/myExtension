@@ -1,7 +1,11 @@
 import { combineReducers } from 'redux';
 
-import sampleState from './sampleState';
+import countReducer from './countReducer';
+import loginReducer from './loginReducer';
 
-export default combineReducers({
-    sampleState
+const rootReducer = combineReducers({
+    countReducer,
+    loginReducer
 });
+
+export default rootReducer;
