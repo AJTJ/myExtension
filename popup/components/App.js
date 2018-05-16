@@ -21,9 +21,8 @@ class App extends Component {
 
 	render() {
 		return (
-			!this.props.loggedIn ?
+			!this.props.isLoggedIn ?
 			<div className='App'>
-				<input type="button" onClick={ this.dispatchClickedAlias.bind(this) } />
 				<Login />
 			</div> :
 			<div>
@@ -31,17 +30,18 @@ class App extends Component {
 			</div>
 		);
 	}
-
-	dispatchClickedAlias() {
-			this.props.dispatch({ type: 'user-clicked-alias' });
-	}
+	// <input type="button" onClick={ this.dispatchClickedAlias.bind(this) } />
+	// dispatchClickedAlias() {
+	// 		this.props.dispatch({ type: 'user-clicked-alias' });
+	// }
 }
 
 
 const mapStateToProps = (state) => {
+	console.log('mapState app', state)
 	return {
 		count: state.countReducer,
-		loggedIn: state.loginReducer.loggedIn
+		isLoggedIn: state.loginReducer.isLoggedIn
 	};
 };
 

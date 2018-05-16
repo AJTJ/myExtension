@@ -9,16 +9,10 @@ const logger = createLogger({
     collapsed: true
 });
 
-const aliases = {
-    'user-clicked-alias': () => {
-        console.log('alias clicked')
-    }
-}
-
 const middleware = [thunk, logger];
 
 const store = compose(
-    applyMiddleware(...middleware, alias(aliases))
+    applyMiddleware(...middleware)
 )(createStore)(rootReducer);
 
 wrapStore(store, {
