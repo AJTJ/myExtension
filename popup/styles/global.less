@@ -1,0 +1,63 @@
+.component {
+  background: @light-blue;
+  width: 250px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+input,
+input:focus {
+  background: white;
+}
+
+li {
+  list-style: none;
+}
+
+li,
+p,
+button,
+input {
+  font-size: 100%;
+  font-size: 16px;
+}
+
+input[type=submit], 
+button, 
+a.linkButton {
+  border: solid black 1px;
+  border-color: @light-gray;
+  background: white;
+  padding: 5px 15px;
+  border-radius: 2px;
+  transition: all 0.2s;
+  &:active {
+    background-color: @red;
+    color: white;
+  }
+
+}
+
+.title {
+  background-color: @blue;
+  color: white;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+input[type=submit],
+.navButton {
+  font-size: 100%;
+  background-color: @blue;
+  color: white;
+  margin: 10px 0 0;
+}

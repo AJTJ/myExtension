@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import Login from './Login';
 import Main from './Main';
 
+const testing = () => {
+	return {
+		type: 'TESTING'
+	}
+}
 
 class App extends Component {
 	constructor(props) {
@@ -11,7 +16,7 @@ class App extends Component {
 	}
 
 	componentDidMount() {
-		console.log('App props', this.props);
+		this.props.dispatch(testing());
 		document.addEventListener('click', () => {
 			this.props.dispatch({
 				type: 'ADD_COUNT'
@@ -30,10 +35,6 @@ class App extends Component {
 			</div>
 		);
 	}
-	// <input type="button" onClick={ this.dispatchClickedAlias.bind(this) } />
-	// dispatchClickedAlias() {
-	// 		this.props.dispatch({ type: 'user-clicked-alias' });
-	// }
 }
 
 

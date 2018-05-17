@@ -1,18 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { browserHistory } from 'react-router'
+import { connect } from 'react-redux';
+import { bindActionCreators } from "redux";
+import * as actions from '../actions/loginAction';
 
 class Options extends Component {
   render() {
     return (
+
       <div>
-        <p>a back button</p>
-        <button onClick={browserHistory.goBack}>Back</button>
-        <p>list of options</p>
-        <p>HELP, ABOUT, SETTINGS, ADVANCED</p>
+        <div className="title">
+          <h1>Options</h1>
+        </div>
+        <div className='options component'>
+          <div className='optionsMenu'>
+            {this.props.options.map(option => <li>{option}</li> )}
+          </div>
+          <div className="backButtonDiv">
+            <button className="navButton" onClick={browserHistory.goBack}>Back</button>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default Options;
+const mapStateToProps = (state) => {
+	return {
+    count: state.countReducer,
+    options: state.loginReducer.options,
+	};
+};
+
+export default connect(
+  mapStateToProps,
+)(Options);

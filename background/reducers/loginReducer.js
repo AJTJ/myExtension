@@ -3,58 +3,56 @@ const initialState = {
   isLoggingIn: false,
   isLoggedIn: false,
   loginFailed: false,
-  error: null
+  error: null,
+  countries: [],
+  selectedCountryIndex: null,
+  options: [],
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'LOGIN_ATTEMPT':
+    case 'LOGGING_IN':
       return {
+        ...state,
         isLoggingIn: true,
         isLoggedIn: false,
-        username: action.username,
+        loginFailed: false,
       };
     case 'LOGIN_FAILED':
       return {
-        error: action.error,
+        ...state,
         isLoggingIn: false,
         isLoggedIn: false,
         loginFailed: true
       };
     case 'LOGIN_SUCCESSFUL':
       return {
+        ...state,
         error: null,
         isLoggingIn: false,
         isLoggedIn: true,
         loginFailed: false,
+        username: action.username,
+        countries: action.countries,
+        selectedCountryIndex: action.selectedCountryIndex,
+        options: action.options
       };
+    case 'LOG_OUT':
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: false,
+        loginFailed: false,
+      };
+    case 'CANCEL_LOGIN':
+      return {
+        ...state,
+        isLoggingIn: false,
+        isLoggedIn: false,
+        loginFailed: false,
+      }
       break;
     default:
       return state;
   }
 };
-
-
-
-// console.log('login reducer triggered')
-// switch (action.type) {
-// case 'LOGIN_INPUT':
-//   return {
-//     ...state,
-//     loggedIn: !state.loggedIn
-//   }
-//   default: 
-//     return state;
-// }
-
-// loggedIn: false,
-// account: { username: 'user1', password: 123456 },
-// countries: [
-//     { name: 'Canada' },
-//     { name: 'United States' },
-//     { name: 'Mexico' },
-//     { name: 'United Kingdom' },
-//     { name: 'France' }
-// ],
-// selectedCountryIndex: -1,
-// options: ['Help', 'About', 'Settings', 'Advanced']

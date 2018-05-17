@@ -3,13 +3,19 @@ import rootReducer from './reducers';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
 import { alias, wrapStore } from 'react-chrome-redux';
+import aliases from './aliases';
+
+import { createLogicMiddleware } from 'redux-logic';
+import logicArr from './logicArr';
 
 const logger = createLogger({
     level: 'info',
     collapsed: true
 });
 
-const middleware = [thunk, logger];
+const logicMiddleware = createLogicMiddleware(logicArr);
+
+const middleware = [ alias(aliases), logicMiddleware, thunk, logger ];
 
 const store = compose(
     applyMiddleware(...middleware)

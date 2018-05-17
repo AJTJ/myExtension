@@ -1,46 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as actions from '../actions/loginAction'
+
+
+const login = (username, password) => {
+	console.log('test was run');
+  const data = {
+    type: 'LOGIN_ATTEMPT',
+    username: username,
+    password: password
+	};
+	return data;
+}
 
 class Login extends Component {
 
-  login = e => {
+  formSubmit = e => {
     e.preventDefault();
-    const { actions } = this.props;
     const username = e.target[0].value;
     const password = e.target[1].value;
-    actions.login();
+    this.props.dispatch(login(username, password));
   }
+
 
   render() {
     console.log('login props', this.props)
     return (
-      <div className="loginWrapper">
-        <form className="loginForm" onSubmit={this.login}>
+      <div>
+        <div className="title">
           <h1>Login</h1>
-          <p>{this.props.count}</p>
-          {this.props.loginFailed &&
-            <p>Login Attempt Failed :(</p>
-          }
-          {this.props.isLoggingIn &&
-            <p>...logging in... </p>
-          }
-          <label htmlFor="nameInput">Name</label>
-          <input type="text" id="nameInput"/>
-          <label htmlFor="passwordInput">Password</label>
-          <input type="password" id="passwordInput"/>
-          <input type="submit"/>
-        </form>
+        </div>
+        <div className="wrapper component">
+          <form className="loginForm" onSubmit={this.formSubmit}>
+            {this.props.loginFailed &&
+              <p>Login Attempt Failed :(</p>
+            }
+            {this.props.isLoggingIn &&
+              <p>...logging in... </p>
+            }
+            <label htmlFor="nameInput">Name</label>
+            <input type="text" id="nameInput"/>
+            <label htmlFor="passwordInput">Password</label>
+            <input type="password" id="passwordInput"/>
+            <input className="navButton" type="submit"/>
+          </form>
+        </div>
       </div>
     )
   }
 }
-
-// <input type="button" onClick={ this.dispatchClickedAlias.bind(this) } />
-// dispatchClickedAlias() {
-//   this.props.dispatch({ type: 'user-clicked-alias' });
-// }
 
 function mapStateToProps(state) {
   return {
@@ -50,13 +58,13 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     actions: bindActionCreators(actions, dispatch)
+//   };
+// }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
+  // mapDispatchToProps,
 )(Login);
