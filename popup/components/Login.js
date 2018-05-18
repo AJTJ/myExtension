@@ -63,8 +63,8 @@ class Login extends Component {
     console.log('login props', this.props)
     return (
       <div>
-        <button onClick={this.beginTest}>Begin</button>
-        <button onClick={this.cancelTest}>Cancel</button>
+        {/* <button onClick={this.beginTest}>Begin</button>
+        <button onClick={this.cancelTest}>Cancel</button> */}
         <div className="title">
           <h1>Login</h1>
         </div>
@@ -76,7 +76,7 @@ class Login extends Component {
             {this.props.isLoggingIn &&
               <div>
                 <p>...logging in... </p>
-                <button onClick={this.cancelLogin}>Cancel Login</button>
+                {/* <button onClick={this.cancelLogin}>Cancel Login</button> */}
               </div> 
             }
             <label htmlFor="nameInput">Name</label>
