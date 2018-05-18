@@ -8,6 +8,7 @@ const CANCEL_LOGIN = 'CANCEL_LOGIN';
 
 //here the login attempt is begun
 const loginAttempt = (data) => {
+  console.log('the login attempt data', data)
   return dispatch => {
     dispatch(beginLogin())
     setTimeout(() => {

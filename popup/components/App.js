@@ -4,19 +4,12 @@ import { connect } from 'react-redux';
 import Login from './Login';
 import Main from './Main';
 
-const testing = () => {
-	return {
-		type: 'TESTING'
-	}
-}
-
 class App extends Component {
 	constructor(props) {
 		super(props)
 	}
 
 	componentDidMount() {
-		this.props.dispatch(testing());
 		document.addEventListener('click', () => {
 			this.props.dispatch({
 				type: 'ADD_COUNT'

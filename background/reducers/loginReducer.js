@@ -7,6 +7,7 @@ const initialState = {
   countries: [],
   selectedCountryIndex: null,
   options: [],
+  cancelling: false,
 }
 
 export default (state = initialState, action) => {
@@ -44,9 +45,9 @@ export default (state = initialState, action) => {
         isLoggedIn: false,
         loginFailed: false,
         username: '',
-        countries: [{name: 'not connected'}],
+        countries: [],
         options: [],
-        selectedCountryIndex: 1,
+        selectedCountryIndex: null,
       };
     case 'CHANGE_COUNTRY':
       return {

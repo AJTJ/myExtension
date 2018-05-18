@@ -13,6 +13,30 @@ const login = (username, password) => {
 	return data;
 }
 
+const cancelLogin = () => {
+  const data = {
+    type: 'CANCEL_LOGIN'
+  };
+  return data;
+}
+
+const testAction = () => {
+  console.log('test action')
+  const data = {
+    type: 'TESTING'
+  };
+  return data;
+}
+
+const cancelTestAction = () => {
+  console.log('cancel test action')
+  const data = {
+    type: 'CANCEL_TESTING',
+    cancelling: true
+  };
+  return data;
+}
+
 class Login extends Component {
 
   formSubmit = e => {
@@ -22,11 +46,25 @@ class Login extends Component {
     this.props.dispatch(login(username, password));
   }
 
+  cancelLogin = () => {
+    this.props.dispatch(cancelLogin());
+  }
+
+  beginTest = () => {
+    this.props.dispatch(testAction());
+  }
+
+  cancelTest = () => {
+    this.props.dispatch(cancelTestAction());
+  }
+
 
   render() {
     console.log('login props', this.props)
     return (
       <div>
+        <button onClick={this.beginTest}>Begin</button>
+        <button onClick={this.cancelTest}>Cancel</button>
         <div className="title">
           <h1>Login</h1>
         </div>
@@ -36,7 +74,10 @@ class Login extends Component {
               <p>Login Attempt Failed :(</p>
             }
             {this.props.isLoggingIn &&
-              <p>...logging in... </p>
+              <div>
+                <p>...logging in... </p>
+                <button onClick={this.cancelLogin}>Cancel Login</button>
+              </div> 
             }
             <label htmlFor="nameInput">Name</label>
             <input type="text" id="nameInput"/>
@@ -58,13 +99,6 @@ function mapStateToProps(state) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     actions: bindActionCreators(actions, dispatch)
-//   };
-// }
-
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps,
 )(Login);
