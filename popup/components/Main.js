@@ -1,21 +1,38 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { bindActionCreators } from "redux";
 import * as actions from '../actions/loginAction';
 
 import CountriesDropdown from './CountriesDropdown';
 
+const changeCountry = (value) => {
+  const data = {
+    type: 'CHANGE_COUNTRY',
+    selectedCountryIndex: value
+  };
+  return data;
+}
+
+const logOutAction = () => {
+  const data = {
+    type: 'LOG_OUT'
+	};
+	return data;
+}
 
 class Main extends Component {
 
   logOut = () => {
-    const { actions } = this.props;
-    actions.logOut();
+    this.props.dispatch(logOutAction());
+  };
+
+  handleChange = (value) => {
+    this.props.dispatch(changeCountry(value));
   }
-  
+
   render() {
     const { currentCountry, countries } = this.props;
+
     return (
       <div>
         <div className="title">
@@ -24,11 +41,14 @@ class Main extends Component {
         <div className='wrapper component mainWrapper'>
           <div>
             <span>Current country: </span>
-            <span>{countries[currentCountry].name}</span>
+            {
+              !countries[currentCountry] ? '' : <span>{countries[currentCountry].name}</span>
+            }
           </div>
           <CountriesDropdown
             countries={countries} 
             currentCountry={currentCountry}
+            handleChange={this.handleChange}
           />
           <Link className='linkButton optionsLink' to={'/options'}>Options</Link>
           <button className='logOutButton navButton' onClick={this.logOut}>Log out</button>
@@ -47,13 +67,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch)
-  };
-}
-
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+  mapStateToProps
 )(Main);

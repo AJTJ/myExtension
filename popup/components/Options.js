@@ -15,7 +15,7 @@ class Options extends Component {
         </div>
         <div className='options component'>
           <div className='optionsMenu'>
-            {this.props.options.map(option => <li>{option}</li> )}
+            {this.props.options.map(option => <li key={option}>{option}</li> )}
           </div>
           <div className="backButtonDiv">
             <button className="navButton" onClick={browserHistory.goBack}>Back</button>

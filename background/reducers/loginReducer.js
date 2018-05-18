@@ -43,7 +43,16 @@ export default (state = initialState, action) => {
         isLoggingIn: false,
         isLoggedIn: false,
         loginFailed: false,
+        username: '',
+        countries: [{name: 'not connected'}],
+        options: [],
+        selectedCountryIndex: 1,
       };
+    case 'CHANGE_COUNTRY':
+      return {
+        ...state,
+        selectedCountryIndex: action.selectedCountryIndex
+      }
     case 'CANCEL_LOGIN':
       return {
         ...state,

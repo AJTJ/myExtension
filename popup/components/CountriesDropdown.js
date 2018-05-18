@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
-import Dropdown from 'react-dropdown';
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
 import * as actions from '../actions/loginAction';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+  title: 'Select Country'
+};
 
 class CountriesDropdown extends Component {
 
-  _onSelect = e => {
-    console.log('selected drop', e);
+  handleChange = (event, index, value) => {
+    const newIndex = value
+    this.props.handleChange(newIndex);
   }
 
   render() {
-    let options = this.props.countries.map((country) => `${country.name}`);
+    const { currentCountry, countries } = this.props;
+    console.log('current country', typeof currentCountry)
     return (
       <div>
-        <Dropdown 
-          options={options}
-          onChange={this._onSelect}
-          placeholder="Switch country"
-        />
+        <SelectField 
+          maxHeight={100} 
+          style={styles.customWidth}
+          onChange={this.handleChange}
+          hintText="Select new country"
+        >
+          {this.props.countries.map((country, index) => <MenuItem key={country.name} value={index} primaryText={country.name}/>)}
+        </SelectField>
       </div>
     )
   }

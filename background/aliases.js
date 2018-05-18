@@ -55,11 +55,7 @@ const checkLogin = (data) => {
 //to set the state to loggedOut
 const logOut = () => {
   return {
-    type: LOG_OUT,
-    username: '',
-    countries: [],
-    options: [],
-    selectedCountryIndex: null,
+    type: LOG_OUT
   }
 }
 
