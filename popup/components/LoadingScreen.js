@@ -20,7 +20,7 @@ class LoadingScreen extends Component {
     let camera = new THREE.PerspectiveCamera( 50, 150/150, 0.1, 1000 );
 
     let mouseX = 0, mouseY = 0;
-    document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
+    document.getElementById("loadingWindow").addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 
     this.mouseX = mouseX
     this.mouseY = mouseY
@@ -43,6 +43,7 @@ class LoadingScreen extends Component {
     let ambientLight = new THREE.AmbientLight( 0x404040, 7 ); // soft white light
     scene.add( ambientLight );
 
+    this.light = light
     this.scene = scene
     this.camera = camera
     // this.cube = cube
@@ -81,6 +82,9 @@ class LoadingScreen extends Component {
     this.torusKnot.rotation.x += 0.01;
     this.torusKnot.rotation.y += 0.02;
 
+    this.light.position.x += ( this.mouseX - this.light.position.x )
+    this.light.position.y += ( - this.mouseY - this.light.position.y )
+
     this.camera.position.x += ( this.mouseX - this.camera.position.x ) * 0.0005;
     this.camera.position.y += ( - this.mouseY - this.camera.position.y ) * 0.0005;
 
@@ -95,7 +99,7 @@ class LoadingScreen extends Component {
 
   render() {
     return (
-      <div className='loadingScreen'>
+      <div id='loadingWindow' className='loadingScreen'>
         <div className='loadingInfo'>
           <div ref={(mount) => {this.mount = mount}} id="loadingImage"></div>
           <p className='loadingText'>...Loading...</p>
