@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import { browserHistory } from 'react-router'
 import { connect } from 'react-redux';
 import { bindActionCreators } from "redux";
-import * as actions from '../actions/loginAction';
 
 class Options extends Component {
   render() {

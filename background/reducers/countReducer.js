@@ -1,7 +1,7 @@
 const initialState = 0;
 
 export default (state = initialState, action) => {
-	console.log('count reducer triggered')
+	// console.log('count reducer triggered')
 	switch (action.type) {
 	case 'ADD_COUNT':
 		return state + (action.payload || 1);

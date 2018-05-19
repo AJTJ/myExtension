@@ -5,17 +5,24 @@ const LOG_OUT = 'LOG_OUT';
 const LOGGING_IN = 'LOGGING_IN';
 const CANCEL_LOGIN = 'CANCEL_LOGIN';
 
-
+let timer = null;
 //here the login attempt is begun
 const loginAttempt = (data) => {
-  console.log('the login attempt data', data)
-  return dispatch => {
-    dispatch(beginLogin())
-    setTimeout(() => {
+  return (
+    (!data ? (
+      console.log('no data')
+    ) : (
+    dispatch => {
       dispatch(checkLogin(data))
-    }, 3000);
-  }
+    }))
+  )
 };
+
+const cancelLogin = () => {
+  return {
+    type: CANCEL_LOGIN
+  }
+}
 
 //sets the state to isLoggingIn
 const beginLogin = () => {
@@ -61,6 +68,8 @@ const logOut = () => {
 }
 
 export default {
+  CANCEL_LOGIN: cancelLogin,
   LOGIN_ATTEMPT: loginAttempt,
   LOG_OUT: logOut,
+  LOGGING_IN: beginLogin
 };

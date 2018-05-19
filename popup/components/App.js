@@ -32,7 +32,6 @@ class App extends Component {
 
 
 const mapStateToProps = (state) => {
-	console.log('mapState app', state)
 	return {
 		count: state.countReducer,
 		isLoggedIn: state.loginReducer.isLoggedIn

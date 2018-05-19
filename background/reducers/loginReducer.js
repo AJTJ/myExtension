@@ -7,7 +7,6 @@ const initialState = {
   countries: [],
   selectedCountryIndex: null,
   options: [],
-  cancelling: false,
 }
 
 export default (state = initialState, action) => {

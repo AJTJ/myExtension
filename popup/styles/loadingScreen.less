@@ -1,0 +1,36 @@
+.loadingScreen {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  animation: colorIn 3s forwards;
+}
+
+.loadingInfo {
+  width: 200px;
+  text-align: center;
+}
+
+.loadingText {
+  color: white;
+}
+
+@keyframes colorIn {
+  0% {
+    background: transparent;
+  }
+
+  10% {
+    background: rgba(0, 0, 255, 0.76);
+  }
+
+  98% {
+    background: rgba(0, 0, 255, 0.76);
+  }
+
+  100% {
+    background: transparent;
+  }
+}
