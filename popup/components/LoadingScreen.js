@@ -15,24 +15,32 @@ class LoadingScreen extends Component {
   }
 
   createObject = () => {
+    let sizeNumber = 150
     let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera( 50, 150/150, 0.1, 1000 );
 
-    // let geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    // let material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    // let cube = new THREE.Mesh( geometry, material );
-    // scene.add( cube );
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener( 'mousemove', this.onDocumentMouseMove, false );
 
-    var geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
-    var material = new THREE.MeshLambertMaterial( { color: 0x680000 } );
-    var torusKnot = new THREE.Mesh( geometry, material );
+    this.mouseX = mouseX
+    this.mouseY = mouseY
+
+    let windowHalfX = 75 ;
+    let windowHalfY = 75 ;
+
+    this.windowHalfX = windowHalfX
+    this.windowHalfY = windowHalfY
+
+    let geometry = new THREE.TorusKnotGeometry( 10, 3, 100, 16 );
+    let material = new THREE.MeshLambertMaterial( { color: 0x680000 } );
+    let torusKnot = new THREE.Mesh( geometry, material );
     scene.add( torusKnot );
 
-    var light = new THREE.PointLight( 0xff0000, 1, 100 );
+    let light = new THREE.PointLight( 0xff0000, 1, 100 );
     light.position.set( 0, 0, 20 );
     scene.add( light );
 
-    var ambientLight = new THREE.AmbientLight( 0x404040, 7 ); // soft white light
+    let ambientLight = new THREE.AmbientLight( 0x404040, 7 ); // soft white light
     scene.add( ambientLight );
 
     this.scene = scene
@@ -46,6 +54,12 @@ class LoadingScreen extends Component {
     this.mount.appendChild(this.renderer.domElement)
     this.start()
   }
+
+  onDocumentMouseMove = ( e ) => {
+    this.mouseX = ( e.clientX - this.windowHalfX );
+    this.mouseY = ( e.clientY - this.windowHalfY );
+  }
+
 
   componentWillUnmount() {
     this.stop()
@@ -66,6 +80,9 @@ class LoadingScreen extends Component {
   animate = () => {
     this.torusKnot.rotation.x += 0.01;
     this.torusKnot.rotation.y += 0.02;
+
+    this.camera.position.x += ( this.mouseX - this.camera.position.x ) * 0.0005;
+    this.camera.position.y += ( - this.mouseY - this.camera.position.y ) * 0.0005;
 
     this.renderScene()
     this.frameId = requestAnimationFrame( this.animate );
@@ -91,11 +108,11 @@ class LoadingScreen extends Component {
 
 export default LoadingScreen;
 
-// var loader = new THREE.FontLoader();
+// let loader = new THREE.FontLoader();
 
 // loader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
 
-// 	var geometry = new THREE.TextGeometry( 'Hello three.js!', {
+// 	let geometry = new THREE.TextGeometry( 'Hello three.js!', {
 // 		font: font,
 // 		size: 80,
 // 		height: 5,
