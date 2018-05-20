@@ -37,8 +37,12 @@ class LoadingScreen extends Component {
     scene.add( torusKnot );
 
     let light = new THREE.PointLight( 0xff0000, 1, 100 );
-    light.position.set( 0, 0, 20 );
+    light.position.set( 0, 0, 50 );
     scene.add( light );
+
+    let lightStatic = new THREE.PointLight( 0xff0000, 1, 100 );
+    lightStatic.position.set( 0, 0, 20 );
+    scene.add( lightStatic );
 
     let ambientLight = new THREE.AmbientLight( 0x404040, 7 ); // soft white light
     scene.add( ambientLight );
@@ -50,7 +54,7 @@ class LoadingScreen extends Component {
     this.torusKnot = torusKnot
 
     
-    camera.position.z = 50;
+    camera.position.z = 60;
 
     this.mount.appendChild(this.renderer.domElement)
     this.start()
